@@ -1,0 +1,60 @@
+server:
+  servlet:
+    context-path: /api/
+  port: 8780
+management:
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: quotation-ms
+  cloud:
+    config:
+      enabled: false
+  config:
+    import: optional:configserver:http://localhost:8780
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quotation_db
+    username: postgres
+    password: master
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      pool-name: HikariCP
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Estrategia de generación de esquema
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect  # Dialecto de Hibernate para PostgreSQL
+        show_sql: true  # Muestra las consultas SQL en los logs
+        format_sql: true  # Formatea las consultas SQL para que sean más legibles
+    generate-ddl: true  # Genera automáticamente el esquema de la base de datos
+    open-in-view: false  # Evita que la conexión esté abierta durante toda la solicitud HTTP
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false  # Para evitar excepciones al serializar objetos vacíos
+
+commons:
+  logging-filter:
+    force-console-output: true
+    max-payload-length: 100
+    exclude-request-uri: [
+      '/api/health',
+      '/api/v3/api-docs/Controllers',
+      '/api/v3/api-docs/swagger-config'
+    ]
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG
