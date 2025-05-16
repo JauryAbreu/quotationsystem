@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa final
-FROM openjdk:21.0.2-slim
+FROM eclipse-temurin:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/quotationsystem-0.0.1-SNAPSHOT.jar quotationsystem.jar
 EXPOSE 8080
