@@ -17,7 +17,8 @@ spring:
     import: optional:configserver:http://localhost:8080
 
   datasource:
-    url: jdbc:postgresql://dpg-d0js86nfte5s73851dv0-a.oregon-postgres.render.com:5432/quotation_db_wqri
+    #url: jdbc:postgresql://dpg-d0js86nfte5s73851dv0-a.oregon-postgres.render.com:5432/quotation_db_wqri
+    url: jdbc:postgresql://dpg-d0js86nfte5s73851dv0-a:5432/quotation_db_wqri
     username: jabreu
     password: EpNwd3fqiAeTyxR87GmbqCnGo9I2AQ4u
     driver-class-name: org.postgresql.Driver
