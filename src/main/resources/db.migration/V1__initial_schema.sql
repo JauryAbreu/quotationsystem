@@ -148,8 +148,8 @@ Precios y disponibilidad del producto pueden variar sin previo aviso.');
 
     IF NOT EXISTS (SELECT 1 FROM Seller) THEN
         INSERT INTO Seller (name, report_template) VALUES
-            ('Juan Pérez', 'template'),
-            ('María Gómez', 'template');
+            ('Juan Pérez'),
+            ('María Gómez');
     END IF;
 END
 $$;
