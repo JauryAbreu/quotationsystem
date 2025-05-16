@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /api/
-  port: 8080
+  port: 8780
 management:
   endpoint:
     health:
@@ -14,13 +14,12 @@ spring:
     config:
       enabled: false
   config:
-    import: optional:configserver:http://localhost:8080
+    import: optional:configserver:http://localhost:8780
 
   datasource:
-    #url: jdbc:postgresql://dpg-d0js86nfte5s73851dv0-a.oregon-postgres.render.com:5432/quotation_db_wqri
-    url: jdbc:postgresql://dpg-d0js86nfte5s73851dv0-a:5432/quotation_db_wqri
-    username: jabreu
-    password: EpNwd3fqiAeTyxR87GmbqCnGo9I2AQ4u
+    url: jdbc:postgresql://localhost:5432/quotation_db
+    username: postgres
+    password: master
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
