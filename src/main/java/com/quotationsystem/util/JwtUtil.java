@@ -3,13 +3,12 @@ package com.quotationsystem.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
@@ -21,7 +20,8 @@ public class JwtUtil {
   public String generateToken(String username, String role) {
     Map<String, Object> claims = new HashMap<>();
     claims.put("role", role);
-    String token = Jwts.builder()
+    String token =
+        Jwts.builder()
             .setClaims(claims)
             .setSubject(username)
             .setIssuedAt(new Date())
@@ -34,10 +34,7 @@ public class JwtUtil {
 
   public Claims extractClaims(String token) {
     try {
-      Claims claims = Jwts.parser()
-              .setSigningKey(SECRET_KEY)
-              .parseClaimsJws(token)
-              .getBody();
+      Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
       logger.debug("Extracted claims: {}", claims);
       return claims;
     } catch (Exception e) {

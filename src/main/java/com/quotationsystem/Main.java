@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class AppRun {
+public class Main {
 
   public static void main(String[] args) {
-    SpringApplication.run(AppRun.class, args);
+    SpringApplication.run(Main.class, args);
   }
 }

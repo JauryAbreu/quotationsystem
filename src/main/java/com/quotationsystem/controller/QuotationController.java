@@ -64,9 +64,9 @@ public class QuotationController {
 
   @PostMapping("/{headerId}/add-product")
   public QuotationHeader addProduct(
-      @PathVariable Long headerId,
-      @RequestBody ProductRequest product) {
-    return quotationService.addProduct(headerId, product.getProductId(), product.getQuotedPrice(), product.getQuantity());
+      @PathVariable Long headerId, @RequestBody ProductRequest product) {
+    return quotationService.addProduct(
+        headerId, product.getProductId(), product.getQuotedPrice(), product.getQuantity());
   }
 
   @PostMapping("/{id}/approve")

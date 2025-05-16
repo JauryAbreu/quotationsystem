@@ -3,7 +3,6 @@ package com.quotationsystem.service.implementation;
 import com.quotationsystem.entity.*;
 import com.quotationsystem.repository.*;
 import com.quotationsystem.service.interfaces.QuotationService;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +29,8 @@ public class QuotationServiceImpl implements QuotationService {
     if (quotationHeader.getStatus() == null) {
       quotationHeader.setStatus(Status.DRAFT);
     }
-    if (quotationHeader.getQuotationNumber() == null && quotationHeader.getStatus() == Status.DRAFT) {
+    if (quotationHeader.getQuotationNumber() == null
+        && quotationHeader.getStatus() == Status.DRAFT) {
       quotationHeader.setQuotationNumber(configurationService.getNextDraftSequence());
       quotationHeader.setQuotationNumber(configurationService.getNextDraftSequence());
     }
@@ -72,8 +72,8 @@ public class QuotationServiceImpl implements QuotationService {
 
   @Override
   public List<QuotationHeader> getAll() {
-      LocalDate dateLimit = LocalDate.now().minusDays(90);
-      return quotationHeaderRepository.findAllWithDetailsFromLast90Days(dateLimit);
+    LocalDate dateLimit = LocalDate.now().minusDays(90);
+    return quotationHeaderRepository.findAllWithDetailsFromLast90Days(dateLimit);
   }
 
   @Override
@@ -178,8 +178,7 @@ public class QuotationServiceImpl implements QuotationService {
             .orElseThrow(() -> new RuntimeException("Product not found"));
 
     double subtotal = quotedPrice * quantity;
-     double taxAmount =
-            ((quotedPrice * product.getTax().getRate()) - quotedPrice) * quantity;
+    double taxAmount = ((quotedPrice * product.getTax().getRate()) - quotedPrice) * quantity;
 
     QuotationDetail detail =
         QuotationDetail.builder()
